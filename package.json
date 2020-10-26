@@ -1,0 +1,23 @@
+{
+  "name": "react-native-web-sound",
+  "version": "0.1.0",
+  "description": "React Native for Web implementation of react-native-sound",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mybigday/react-native-web-sound.git"
+  },
+  "author": "jhen <developer@jhen.me>",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-native-web",
+    "react-native-sound"
+  ],
+  "dependencies": {
+    "howler": "^2.2.1"
+  },
+  "peerDependencies": {
+    "react-native-web": "*"
+  }
+}
