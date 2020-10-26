@@ -1,6 +1,6 @@
 {
   "name": "react-native-web-sound",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native for Web implementation of react-native-sound",
   "main": "src/index.js",
   "repository": {
