@@ -4,7 +4,7 @@ export default function Sound(asset, basePath, onError) {
   this.sound = new Howl({
     src: [asset],
     onload: onError,
-    onloaderror: onError,
+    onloaderror: (id, error) => onError && onError(`Got error: ${error}`),
   })
 }
 
