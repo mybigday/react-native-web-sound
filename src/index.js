@@ -18,8 +18,9 @@ Sound.prototype.isLoaded = function () {
   return this.sound.state() === 'loaded'
 }
 
-Sound.prototype.play = function() {
+Sound.prototype.play = function(onEnd) {
   if (!this.isLoaded()) return this
+  if (onEnd) this.sound.once('end', onEnd)
   this.sound.play()
   return this
 }
