@@ -14,9 +14,7 @@
     "react-native-web",
     "react-native-sound"
   ],
-  "dependencies": {
-    "howler": "^2.2.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react-native-web": "*"
   }
