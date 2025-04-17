@@ -57,6 +57,7 @@ Sound.prototype.reset = function() { return this }
 
 Sound.prototype.release = function() {
   this.stop()
+  this.audioContext.close()
   return this
 }
 
