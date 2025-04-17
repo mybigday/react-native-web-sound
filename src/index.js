@@ -34,9 +34,6 @@ Sound.prototype.play = function(onEnd) {
   if (this.audioContext.state === 'suspended') {
     this.audioContext.resume()
   } else {
-    this.source = this.audioContext.createBufferSource()
-    this.source.buffer = this.source.buffer
-    this.source.connect(this.gainNode)
     this.source.start(0, this.currentPlaybackPosition)
   }
   this.source.onended = () => onEnd && onEnd(true)
