@@ -5,6 +5,7 @@ export default function Sound(asset, basePath, onError) {
   this.source.connect(this.gainNode)
   this.gainNode.connect(this.audioContext.destination)
   this.currentPlaybackPosition = 0
+  this.started = false
 
   fetch(asset)
     .then(response => response.arrayBuffer())
@@ -35,6 +36,7 @@ Sound.prototype.play = function(onEnd) {
     this.audioContext.resume()
   } else {
     this.source.start(0, this.currentPlaybackPosition)
+    this.started = true
   }
   this.source.onended = () => onEnd && onEnd(true)
   return this
@@ -48,7 +50,7 @@ Sound.prototype.pause = function() {
 }
 
 Sound.prototype.stop = function() {
-  this.source.stop(0)
+  if (this.started) this.source.stop(0)
   this.currentPlaybackPosition = 0
   return this
 }
@@ -56,8 +58,9 @@ Sound.prototype.stop = function() {
 Sound.prototype.reset = function() { return this }
 
 Sound.prototype.release = function() {
-  this.stop()
+  try { this.stop() } catch {}
   this.audioContext.close()
+  this.gainNode.disconnect()
   return this
 }
 
@@ -108,7 +111,7 @@ Sound.prototype.setCurrentTime = function(v) {
   return this
 }
 
-Sound.prototype.isPlaying = function() { return this.source.playbackState === this.source.PLAYING_STATE }
+Sound.prototype.isPlaying = function() { return this.started && this.audioContext.state !== 'suspended' }
 
 Sound.prototype.setCategory = () => {}
 
